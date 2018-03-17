@@ -51,13 +51,13 @@ class Todolist extends React.Component {
   	onCBClickHandler(oid) {
 	  	//console.log("I have been ticked!");
 		//console.log(od);
-		const todos = this.state.todos;
 		let newTodos = [];
 		this.state.todos.map ((obj) => {
 			if (obj.id === oid){
 				obj.done = !obj.done;
 			}
 			newTodos.push(obj);
+			return 0;
 		});
 		this.setState({todos: newTodos});
 		//console.log(this.state.todos);
