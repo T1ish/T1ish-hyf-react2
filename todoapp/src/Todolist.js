@@ -70,14 +70,16 @@ class Todolist extends React.Component {
 				<button onClick={this.onClickHandler}>Add object test</button>
 				<ul>
 					{
-						this.state.todos.map((obj) => {
+						this.state.todos < 1 
+						? <p>No items...</p>
+						: this.state.todos.map((obj) => {
 							//console.log(obj.id, obj.description, obj.deadline, obj.done);
 							//return <Todo id={obj.id} item={obj.description} date={obj.deadline}/>
 							return <li key={obj.id} onClick={this.onCBClickHandler.bind(this, obj.id)}>
 								<Checkbox complete={obj.done}/> 
 								{obj.description}, {obj.deadline}
 							</li>
-						})
+						})				
 					}
 				</ul>
 			</div>
