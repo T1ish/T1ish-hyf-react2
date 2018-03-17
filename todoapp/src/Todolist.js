@@ -2,7 +2,6 @@ import React from "react";
 import Todo from "./Todo";
 import Checkbox from "./Checkbox";
 
-//const todos = [				["hello", 0], 				["hi", 1], 				["bye", 2],				["goodmorning", 3]			];
 
 class Todolist extends React.Component {
 	constructor(props) {
@@ -29,26 +28,55 @@ class Todolist extends React.Component {
 			  }
 			]
 		};
-
+		this.counter = 4;
+		this.onClickHandler = this.onClickHandler.bind(this);
+		//this.onCBClickHandler = this.onCBClickHandler.bind(this);
     
   	}
 
   	onClickHandler() {
-		console.log("I have been clicked!");
+		//console.log("I have been licked!");
+		const newObject = 
+		{
+			 "id": this.counter++,
+			 "description": "Go to sleep breakfast",
+			 "deadline": "2018-09-09",
+			 "done": false
+		};
+		const todos = this.state.todos;
+		const newTodos = [...todos, newObject];
+		this.setState({todos: newTodos});
+	}
+
+  	onCBClickHandler(oid) {
+	  	//console.log("I have been ticked!");
+		//console.log(od);
+		const todos = this.state.todos;
+		let newTodos = [];
+		this.state.todos.map ((obj) => {
+			if (obj.id === oid){
+				obj.done = !obj.done;
+			}
+			newTodos.push(obj);
+		});
+		this.setState({todos: newTodos});
+		//console.log(this.state.todos);
 	}
 
 	render() {
 		return (
 			<div>
 				<h1>Todo List</h1>
-				<button onClick={this.onClickHandler}>trest</button>
+				<button onClick={this.onClickHandler}>Add object test</button>
 				<ul>
 					{
-
 						this.state.todos.map((obj) => {
-							console.log(obj.id, obj.description, obj.deadline, obj.done);
+							//console.log(obj.id, obj.description, obj.deadline, obj.done);
 							//return <Todo id={obj.id} item={obj.description} date={obj.deadline}/>
-							return <li key={obj.id}><Checkbox onClick={this.onClickHandler} />{obj.description}, {obj.deadline}</li>
+							return <li key={obj.id} onClick={this.onCBClickHandler.bind(this, obj.id)}>
+								<Checkbox complete={obj.done}/> 
+								{obj.description}, {obj.deadline}
+							</li>
 						})
 					}
 				</ul>

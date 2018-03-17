@@ -2,13 +2,18 @@ import React from "react";
 
 class Checkbox extends React.Component {
 
-	onClickHandler() {
+/*	onClickHandler() {
 		console.log("I have been clicked!");
 	}
-
+*/
 	render() {
+		const isCompleted = this.props.complete;
 		return (
-			<span onClick={this.onClickHandler}>[ ]</span>
+			<span /*onClick={this.onClickHandler}*/>
+			{
+				isCompleted?'[Y]':'[N]'
+			}
+			</span>
 
 			);
 	}
